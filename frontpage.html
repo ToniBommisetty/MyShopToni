@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="TO||NI - Premium quality t-shirts and apparel" name="description" />
+    <meta content="t-shirts, apparel, clothing, fashion" name="keywords" />
+    <meta content="TO||NI" name="author" />
+    <link href="Images/adidas.png" rel="icon" />
+    <title>TO||NI</title>
+    <!----Link To CSS-->
+    <link href="style.css" rel="stylesheet" />
+    <link href="stylef.css" rel="stylesheet" />
+    <!----Box Icons-->
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
+    </link>
+</head>
+<Style>
+    .user-action {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    padding: 12px 0;
+    width: 180px;
+    display: none;
+    z-index: 1000;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+.user-action.active {
+    display: block;
+}
+
+.user-action ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.user-action ul li {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.user-action ul li a input[type="button"] {
+    background: linear-gradient(135deg, #111, #333);
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    padding: 12px 25px;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 0 0 transparent;
+}
+
+.user-action ul li a input[type="button"]:hover {
+    background-color: white;
+    background: linear-gradient(135deg, #f3eded, #444);
+    box-shadow: 0 0 10px #fff, 0 0 20px #999;
+    transform: translateY(-2px);
+}
+
+</Style>
+<body>
+    <!--Nav Bar-->
+    <header>
+        <a class="logo" href="#"><i class="bx bxs-t-shirt"></i> TO||NI</a>
+        <ul class="navbar">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#new">New Araivals</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+        </ul>
+        <!--Icons-->
+        <div class="header-icons">
+            <i class="bx bx-menu" id="menu-icon"></i>
+            <i class="bx bx-search-alt-2" id="search-icon"></i>
+            <i class="bx bx-cart-add" id="cart-icon"></i>
+            <i class="bx bx-package" id="orders-icon"></i>
+            <i class="bx bx-user" id="user-icon" onclick="toggleMenu()"></i>
+            <!-- Orders Dropdown -->
+            <div class="orders-dropdown" id="ordersDropdown">
+                <div class="orders-header">
+                    <span>Your Orders</span>
+                    <i class="bx bx-x close-orders"></i>
+                </div>
+                <div id="ordersList">
+                    <!-- Orders will be dynamically added here -->
+                    <div class="no-orders">No orders yet</div>
+                </div>
+                <a class="view-all-orders" href="#">View All Orders</a>
+            </div>
+            <div class="user-action">
+                <ul>
+                    <li>
+                        <a href="Account.html"><input type="button" value="Profile" /></a><br />
+                        <a href="index.html"><input type="button" value="Logout" /></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!---Search Box-->
+        <div class="search-box">
+            <input id="productSearch" name="" placeholder="Search Here..." type="search" />
+        </div>
+        <!--Cart Box-->
+        <div class="cart">
+            <!-- Checkout Button -->
+            <div class="empty-cart-msg">No order placed</div>
+            <button class="checkout-btn">Checkout</button>
+        </div>
+    </header>
+    <!-- Checkout Modal -->
+    <div class="checkout-modal" id="checkoutModal">
+        <div class="checkout-content">
+            <span class="close-modal">×</span>
+            <h2>Checkout</h2>
+            <div class="checkout-form">
+                <h3>Shipping Information</h3>
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input id="fullName" name="fullName" required="" type="text" />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input id="email" name="email" required="" type="email" />
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <div style="display: flex;">
+                        <select id="countryCode" name="countryCode" style="width: 30%; margin-right: 10px;">
+                            <option value="+1">+1 (USA)</option>
+                            <option value="+44">+44 (UK)</option>
+                            <option value="+91">+91 (India)</option>
+                            <option value="+92">+92 (Pakistan)</option>
+                            <option value="+63">+63 (Philippines)</option>
+                            <!-- Add more country codes as needed -->
+                        </select>
+                        <input id="phone" name="phone" required="" style="width: 70%;" type="tel" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <textarea id="address" name="address" required="" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input id="city" name="city" required="" type="text" />
+                </div>
+                <div class="form-group">
+                    <label for="zipCode">ZIP/Postal Code</label>
+                    <input id="zipCode" name="zipCode" required="" type="text" />
+                </div>
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <select id="country" name="country" required="">
+                        <option value="">Select Country</option>
+                        <option value="US">United States</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="IN">India</option>
+                        <option value="PK">Pakistan</option>
+                        <option value="PH">Philippines</option>
+                        <!-- Add more countries as needed -->
+                    </select>
+                </div>
+                <div class="payment-methods">
+                    <h3>Payment Method</h3>
+                    <div class="payment-option">
+                        <input checked="" id="cod" name="paymentMethod" type="radio" value="cod" />
+                        <label for="cod">Cash on Delivery (COD)</label>
+                    </div>
+                    <div class="payment-option">
+                        <input id="creditCard" name="paymentMethod" type="radio" value="creditCard" />
+                        <label for="creditCard">Credit/Debit Card</label>
+                    </div>
+                    <div class="card-details" id="creditCardDetails">
+                        <div class="form-group">
+                            <label for="cardNumber">Card Number</label>
+                            <input id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" type="text" />
+                        </div>
+                        <div class="form-group">
+                            <label for="cardName">Name on Card</label>
+                            <input id="cardName" name="cardName" type="text" />
+                        </div>
+                        <div style="display: flex; gap: 15px;">
+                            <div class="form-group" style="flex: 1;">
+                                <label for="expiryDate">Expiry Date</label>
+                                <input id="expiryDate" name="expiryDate" placeholder="MM/YY" type="text" />
+                            </div>
+                            <div class="form-group" style="flex: 1;">
+                                <label for="cvv">CVV</label>
+                                <input id="cvv" name="cvv" placeholder="123" type="text" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="payment-option">
+                        <input id="emi" name="paymentMethod" type="radio" value="emi" />
+                        <label for="emi">EMI</label>
+                    </div>
+                    <div class="card-details" id="emiDetails">
+                        <div class="form-group">
+                            <label for="bank">Select Bank</label>
+                            <select id="bank" name="bank">
+                                <option value="">Select Bank</option>
+                                <option value="hdfc">HDFC Bank</option>
+                                <option value="icici">ICICI Bank</option>
+                                <option value="sbi">SBI Bank</option>
+                                <option value="axis">Axis Bank</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="tenure">EMI Tenure</label>
+                            <select id="tenure" name="tenure">
+                                <option value="3">3 Months</option>
+                                <option value="6">6 Months</option>
+                                <option value="9">9 Months</option>
+                                <option value="12">12 Months</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-summary">
+                    <h3>Order Summary</h3>
+                    <div id="orderItems">
+                    </div>
+                    <div class="summary-item">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">$0.00</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Shipping:</span>
+                        <span id="shipping">$5.00</span>
+                    </div>
+                    <div class="summary-item" style="font-weight: bold; font-size: 1.1em;">
+                        <span>Total:</span>
+                        <span id="total">$5.00</span>
+                    </div>
+                </div>
+                <button class="place-order-btn" id="placeOrderBtn" type="button">Place Order</button>
+            </div>
+        </div>
+    </div>
+    <!-- Rest of your HTML content remains the same -->
+    <!---Home-->
+    <section class="home" id="home">
+        <div class="home-text">
+            <span>Shop Now</span>
+            <h1>New Arrival of <br />Fresh Products</h1>
+            <a class="btn" href="#products">Shop Now</a>
+        </div>
+        <div class="home-img">
+            <img alt="" src="Images/home.png" />
+        </div>
+    </section>
+    <!----New Arrivals-->
+    <section class="new" id="new">
+        <div class="heading">
+            <h1>New <span>Arrival</span></h1>
+        </div>
+        <div class="swiper new-arrival">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide box">
+                    <img alt="" src="Images/new1.jpg" />
+                    <div class="content">
+                        <a class="btn" href="#">Buy Now</a>
+                    </div>
+                </div>
+                <div class="swiper-slide box">
+                    <img alt="" src="Images/Tshirt3.jpeg" />
+                    <div class="content">
+                        <a class="btn" href="#">Buy Now</a>
+                    </div>
+                </div>
+                <div class="swiper-slide box">
+                    <img alt="" src="Images/Tshirt4.jpeg" />
+                    <div class="content">
+                        <a class="btn" href="#">Buy Now</a>
+                    </div>
+                </div>
+                <div class="swiper-slide box">
+                    <img alt="" src="Images/Tshirt5.png" />
+                    <div class="content">
+                        <a class="btn" href="#">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-----Product-->
+    <section class="products" id="products">
+        <div class="heading">
+            <h1>Our <span>Products</span></h1>
+        </div>
+        <div class="product-container">
+            <div class="box">
+                <img alt="" src="Images/Products1.webp" />
+                <div class="content">
+                    <h2>T-Shirt XS</h2>
+                    <div class="stars">
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star-half"></i>
+                    </div>
+                    <span>$25.05</span>
+                    <i class="bx bx-cart-alt"></i>
+                </div>
+            </div>
+            <div class="box">
+                <img alt="" src="Images/Products2.webp" />
+                <div class="content">
+                    <h2>T-Shirt XXL</h2>
+                    <div class="stars">
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star-half"></i>
+                    </div>
+                    <span>$30.75</span>
+                    <i class="bx bx-cart-alt"></i>
+                </div>
+            </div>
+            <div class="box">
+                <img alt="" src="Images/Products3.webp" />
+                <div class="content">
+                    <h2>T-Shirt XS</h2>
+                    <div class="stars">
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star-half"></i>
+                    </div>
+                    <span>$50.05</span>
+                    <i class="bx bx-cart-alt"></i>
+                </div>
+            </div>
+            <div class="box">
+                <img alt="" src="Images/Products4.webp" />
+                <div class="content">
+                    <h2>T-Shirt White XL</h2>
+                    <div class="stars">
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star-half"></i>
+                    </div>
+                    <span>$20.05</span>
+                    <i class="bx bx-cart-alt"></i>
+                </div>
+            </div>
+            <div class="box">
+                <img alt="" src="Images/Products5.webp" />
+                <div class="content">
+                    <h2>Full Suite 14A</h2>
+                    <div class="stars">
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star-half"></i>
+                    </div>
+                    <span>$60.05</span>
+                    <i class="bx bx-cart-alt"></i>
+                </div>
+            </div>
+            <div class="box">
+                <img alt="" src="Images/Products6.webp" />
+                <div class="content">
+                    <h2>T-Shirt(Black) S</h2>
+                    <div class="stars">
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star-half"></i>
+                    </div>
+                    <span>$10.05</span>
+                    <i class="bx bx-cart-alt"></i>
+                </div>
+            </div>
+            <div class="box">
+                <img alt="" src="Images/Products7.webp" />
+                <div class="content">
+                    <h2>T-Shirt DENIM 14A</h2>
+                    <div class="stars">
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star-half"></i>
+                    </div>
+                    <span>$27.05</span>
+                    <i class="bx bx-cart-alt"></i>
+                </div>
+            </div>
+            <div class="box">
+                <img alt="" src="Images/Products8.webp" />
+                <div class="content">
+                    <h2>T-Shirt(White) 14A S</h2>
+                    <div class="stars">
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star-half"></i>
+                    </div>
+                    <span>$10.05</span>
+                    <i class="bx bx-cart-alt"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="reviews" id="reviews">
+        <div class="heading">
+            <h1>Our <span>Customer's</span></h1>
+        </div>
+        <div class="reviews-container">
+            <div class="box">
+                <img alt="" src="Images/new1.jpg" />
+                <div class="stars">
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star-half"></i>
+                </div>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+                    and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
+                    leap into electronic typesetting, remaining essentially unchanged.</p>
+                <h2>Dinesh</h2>
+            </div>
+            <div class="box">
+                <img alt="" src="Images/Review.png" />
+                <div class="stars">
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star-half"></i>
+                </div>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+                    and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
+                    leap into electronic typesetting, remaining essentially unchanged.</p>
+                <h2>Toni Bommisetty</h2>
+            </div>
+            <div class="box">
+                <img alt="" src="Images/Products1.webp" />
+                <div class="stars">
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star-half"></i>
+                </div>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+                    and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
+                    leap into electronic typesetting, remaining essentially unchanged.</p>
+                <h2>Savan</h2>
+            </div>
+        </div>
+    </section>
+    <!----Footer--->
+    <section class="footer">
+        <div class="footer-box">
+            <h2>adidas</h2>
+            <p>Orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+                into electronic typesetting, remaining essentially unchanged.</p>
+            <div class="social">
+                <a href="#"><i class="bx bxl-facebook"></i></a>
+                <a href="#"><i class="bx bxl-twitter"></i></a>
+                <a href="#"><i class="bx bxl-instagram"></i></a>
+                <a href="#"><i class="bx bxl-tiktok"></i></a>
+            </div>
+        </div>
+        <div class="footer-box">
+            <h3>Support</h3>
+            <li><a href="#">Product</a></li>
+            <li><a href="#">Help &amp; Support</a></li>
+            <li><a href="#">Return Policy</a></li>
+            <li><a href="#">Term of use</a></li>
+            <li><a href="#">FAQ</a></li>
+        </div>
+        <div class="footer-box">
+            <h3>Our Branches</h3>
+            <li><a href="#">India</a></li>
+            <li><a href="#">Phillippines</a></li>
+            <li><a href="#">United Kingdom</a></li>
+            <li><a href="#">Pakistan</a></li>
+            <li><a href="#">United states of America</a></li>
+        </div>
+        <div class="footer-box">
+            <h3>Payment Method</h3>
+            <div class="payment">
+                <img alt="" src="Images/visa.png" />
+                <img alt="" src="Images/mastercard.png" />
+                <img alt="" src="Images/paypal.png" />
+                <img alt="" src="Images/american-express.png" />
+            </div>
+        </div>
+    </section>
+    <!--------Copyrights-->
+    <div class="copyright">
+        <p>© CarpoolVenom All Right Reserved.</p>
+    </div>
+    Add this script code into one script tag <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // Clear any existing orders data when page loads
+        localStorage.removeItem('userOrders');
+        localStorage.setItem('userOrders', JSON.stringify([]));
+    </script>
+    <script>
+        // Initialize localStorage items
+        if (!localStorage.getItem('userOrders')) {
+            localStorage.setItem('userOrders', JSON.stringify([]));
+        }
+        if (!localStorage.getItem('cart')) {
+            localStorage.setItem('cart', JSON.stringify([]));
+        }
+    </script>
+    <!-- Navbar & Icons Toggle -->
+    <script>
+        const search = document.querySelector('.search-box');
+        const cart = document.querySelector('.cart');
+        const navbar = document.querySelector('.navbar');
+
+        document.querySelector('#search-icon')?.addEventListener('click', () => {
+            search.classList.toggle('active');
+            cart.classList.remove('active');
+            user.classList.remove('active');
+            navbar.classList.remove('active');
+        });
+
+        document.querySelector('#cart-icon')?.addEventListener('click', () => {
+            cart.classList.toggle('active');
+            search.classList.remove('active');
+            user.classList.remove('active');
+            navbar.classList.remove('active');
+        });
+
+        document.querySelector('#menu-icon')?.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+            search.classList.remove('active');
+            cart.classList.remove('active');
+            user.classList.remove('active');
+        });
+
+        // Remove active classes on scroll
+        window.onscroll = () => {
+            search.classList.remove('active');
+            cart.classList.remove('active');
+            user.classList.remove('active');
+            navbar.classList.remove('active');
+        };
+    </script>
+    <script>
+        // User Dropdown Toggle
+        function toggleMenu() {
+            const userAction = document.querySelector('.user-action');
+            userAction.classList.toggle('active');
+        }
+
+        // Close when clicking outside
+        document.addEventListener('click', function (e) {
+            const userAction = document.querySelector('.user-action');
+            const userIcon = document.getElementById('user-icon');
+
+            if (!userAction.contains(e.target) && e.target !== userIcon) {
+                userAction.classList.remove('active');
+            }
+        });
+    </script>
+    <!-- Swiper Initialization -->
+    <script>
+        const swiper = new Swiper('.new-arrival', {
+            loop: true,
+            slidesPerView: 3,
+            spaceBetween: 20,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+        });
+    </script>
+    <!-- Cart Quantity & Price Update Script -->
+    <script>
+        // Initialize orders in localStorage if not exists
+        if (!localStorage.getItem('userOrders')) {
+            localStorage.setItem('userOrders', JSON.stringify([]));
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            const cart = document.querySelector('.cart');
+
+            cart.addEventListener('click', function (e) {
+                if (e.target.classList.contains('increase') || e.target.classList.contains('decrease')) {
+                    const box = e.target.closest('.box');
+                    const countSpan = box.querySelector('.count');
+                    const priceSpan = box.querySelector('.text span');
+                    const originalPrice = parseFloat(priceSpan.getAttribute('data-unit-price'));
+
+                    let count = parseInt(countSpan.textContent);
+
+                    if (e.target.classList.contains('increase')) {
+                        count++;
+                    }
+
+                    if (e.target.classList.contains('decrease') && count > 1) {
+                        count--;
+                    }
+
+                    countSpan.textContent = count;
+                    priceSpan.textContent = `$${(originalPrice * count).toFixed(2)}`;
+                }
+
+                if (e.target.classList.contains('bxs-trash')) {
+                    const box = e.target.closest('.box');
+                    box.remove();
+                }
+            });
+
+            // Checkout Modal Logic
+            const checkoutModal = document.getElementById('checkoutModal');
+            const checkoutBtn = document.querySelector('.checkout-btn');
+            const closeModal = document.querySelector('.close-modal');
+            const paymentMethods = document.querySelectorAll('input[name="paymentMethod"]');
+            const creditCardDetails = document.getElementById('creditCardDetails');
+            const emiDetails = document.getElementById('emiDetails');
+            const placeOrderBtn = document.getElementById('placeOrderBtn');
+
+            // Open checkout modal
+            checkoutBtn.addEventListener('click', () => {
+                const boxes = document.querySelectorAll('.cart .box');
+                if (boxes.length === 0) {
+                    alert('Your cart is empty!');
+                    return;
+                }
+
+                // Update order summary
+                updateOrderSummary();
+
+                checkoutModal.style.display = 'block';
+            });
+
+            // Close modal
+            closeModal.addEventListener('click', () => {
+                checkoutModal.style.display = 'none';
+            });
+
+            // Close modal when clicking outside
+            window.addEventListener('click', (e) => {
+                if (e.target === checkoutModal) {
+                    checkoutModal.style.display = 'none';
+                }
+            });
+
+            // Show/hide payment details based on selection
+            paymentMethods.forEach(method => {
+                method.addEventListener('change', () => {
+                    creditCardDetails.style.display = 'none';
+                    emiDetails.style.display = 'none';
+
+                    if (method.id === 'creditCard') {
+                        creditCardDetails.style.display = 'block';
+                    } else if (method.id === 'emi') {
+                        emiDetails.style.display = 'block';
+                    }
+                });
+            });
+
+            // Place order button
+            placeOrderBtn.addEventListener('click', () => {
+                // Validate form
+                const fullName = document.getElementById('fullName').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const address = document.getElementById('address').value;
+                const city = document.getElementById('city').value;
+                const zipCode = document.getElementById('zipCode').value;
+                const country = document.getElementById('country').value;
+
+                if (!fullName || !email || !phone || !address || !city || !zipCode || !country) {
+                    alert('Please fill in all required fields');
+                    return;
+                }
+
+                // Validate payment method
+                const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+
+                if (paymentMethod === 'creditCard') {
+                    const cardNumber = document.getElementById('cardNumber').value;
+                    const cardName = document.getElementById('cardName').value;
+                    const expiryDate = document.getElementById('expiryDate').value;
+                    const cvv = document.getElementById('cvv').value;
+
+                    if (!cardNumber || !cardName || !expiryDate || !cvv) {
+                        alert('Please fill in all credit card details');
+                        return;
+                    }
+                } else if (paymentMethod === 'emi') {
+                    const bank = document.getElementById('bank').value;
+                    const tenure = document.getElementById('tenure').value;
+
+                    if (!bank || !tenure) {
+                        alert('Please select bank and EMI tenure');
+                        return;
+                    }
+                }
+
+                // Process order (in a real app, this would send data to a server)
+                alert('Your order has been placed successfully!');
+
+                // Save the order
+                const orderData = {
+                    id: 'ORD-' + Math.floor(Math.random() * 100000),
+                    date: new Date().toISOString(),
+                    status: 'processing',
+                    items: Array.from(document.querySelectorAll('.cart .box')).map(box => ({
+                        name: box.querySelector('.text h3').textContent,
+                        quantity: parseInt(box.querySelector('.count').textContent),
+                        price: parseFloat(box.querySelector('.text span').getAttribute('data-unit-price')),
+                        image: box.querySelector('img').src
+                    })),
+                    total: parseFloat(document.getElementById('total').textContent.replace('$', ''))
+                };
+
+                saveOrder(orderData);
+
+                // Clear cart
+                const cart = document.querySelector('.cart');
+                const boxes = document.querySelectorAll('.cart .box');
+                boxes.forEach(box => box.remove());
+
+                // Close modal
+                checkoutModal.style.display = 'none';
+            });
+
+            // Function to save order to localStorage
+            function saveOrder(orderData) {
+                let orders = JSON.parse(localStorage.getItem('userOrders')) || [];
+                orders.unshift(orderData); // Add new order at the beginning
+                localStorage.setItem('userOrders', JSON.stringify(orders));
+            }
+
+            // Function to update order summary
+            function updateOrderSummary() {
+                const orderItems = document.getElementById('orderItems');
+                const subtotalElement = document.getElementById('subtotal');
+                const shippingElement = document.getElementById('shipping');
+                const totalElement = document.getElementById('total');
+
+                // Clear previous items
+                orderItems.innerHTML = '';
+
+                let subtotal = 0;
+
+                // Add each item to the summary
+                document.querySelectorAll('.cart .box').forEach(box => {
+                    const name = box.querySelector('.text h3').textContent;
+                    const priceText = box.querySelector('.text span').textContent;
+                    const quantity = box.querySelector('.count').textContent;
+                    const price = parseFloat(priceText.replace('$', ''));
+
+                    subtotal += price;
+
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'summary-item';
+                    itemElement.innerHTML = `
+                        <span>${name} (x${quantity})</span>
+                        <span>$${(price).toFixed(2)}</span>
+                    `;
+
+                    orderItems.appendChild(itemElement);
+                });
+
+                // Calculate shipping (fixed for this example)
+                const shipping = 5.00;
+                const total = subtotal + shipping;
+
+                // Update totals
+                subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
+                shippingElement.textContent = `$${shipping.toFixed(2)}`;
+                totalElement.textContent = `$${total.toFixed(2)}`;
+            }
+        });
+    </script>
+    <!-- User Session & Logout Script -->
+    <script>
+        if (!localStorage.getItem("cart")) {
+            localStorage.setItem("cart", JSON.stringify([]));
+        }
+
+        // Retrieve user data from sessionStorage
+        const user = JSON.parse(sessionStorage.getItem('user'));
+
+        // Display user information if available
+        if (user) {
+            document.getElementById('user-name').textContent = `${user.firstname} ${user.surname}`;
+        }
+
+        // Logout functionality: Clear session storage and redirect to the login page
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            sessionStorage.removeItem('user');
+            window.location.href = 'frontpage.html';  // Redirect to the login page
+        });
+    </script>
+    <script>
+        if (!localStorage.getItem("cart")) {
+            localStorage.setItem("cart", JSON.stringify([]));
+        }
+
+        // Retrieve user data from sessionStorage
+        const user = JSON.parse(sessionStorage.getItem('user'));
+
+        // Display user information if available
+        if (user) {
+            document.getElementById('user-name').textContent = `${user.firstname} ${user.surname}`;
+        }
+
+        // Logout functionality: Clear session storage and redirect to the login page
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            sessionStorage.removeItem('user');
+            window.location.href = 'frontpage.html';  // Redirect to the login page
+        });
+    </script>
+    <!-- Orders Dropdown Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize localStorage with empty orders if it doesn't exist
+            if (!localStorage.getItem('userOrders')) {
+                localStorage.setItem('userOrders', JSON.stringify([]));
+            }
+
+            const ordersIcon = document.getElementById('orders-icon');
+            const ordersDropdown = document.getElementById('ordersDropdown');
+            const closeOrders = document.querySelector('.close-orders');
+
+            // Toggle orders dropdown when clicking the orders icon
+            if (ordersIcon) {
+                ordersIcon.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    ordersDropdown.classList.toggle('active');
+
+                    // Load orders when dropdown is opened
+                    if (ordersDropdown.classList.contains('active')) {
+                        loadOrders();
+                    }
+                });
+            }
+
+            // Close orders dropdown when clicking the close button
+            if (closeOrders) {
+                closeOrders.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    ordersDropdown.classList.remove('active');
+                });
+            }
+
+            // Close orders dropdown when clicking outside
+            document.addEventListener('click', function (e) {
+                if (!ordersDropdown.contains(e.target) && e.target !== ordersIcon) {
+                    ordersDropdown.classList.remove('active');
+                }
+            });
+
+            // Function to load and display orders
+            function loadOrders() {
+                const ordersList = document.getElementById('ordersList');
+                const orders = JSON.parse(localStorage.getItem('userOrders')) || [];
+
+                // Clear current orders
+                ordersList.innerHTML = '';
+
+                if (orders.length === 0) {
+                    ordersList.innerHTML = '<div class="no-orders">No orders yet</div>';
+                    return;
+                }
+
+                // Add each order to the dropdown
+                orders.forEach((order, index) => {
+                    const orderElement = document.createElement('div');
+                    orderElement.className = 'order-item';
+                    orderElement.dataset.orderId = order.id;
+
+                    // Determine status class and text
+                    let statusClass = '';
+                    let statusText = '';
+
+                    switch (order.status) {
+                        case 'delivered':
+                            statusClass = 'status-delivered';
+                            statusText = 'Delivered';
+                            break;
+                        case 'processing':
+                            statusClass = 'status-processing';
+                            statusText = 'Processing';
+                            break;
+                        case 'shipped':
+                            statusClass = 'status-shipped';
+                            statusText = 'Shipped';
+                            break;
+                        case 'cancelled':
+                            statusClass = 'status-cancelled';
+                            statusText = 'Cancelled';
+                            break;
+                        default:
+                            statusClass = 'status-processing';
+                            statusText = 'Processing';
+                    }
+
+                    // Format order date
+                    const orderDate = new Date(order.date);
+                    const formattedDate = orderDate.toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric'
+                    });
+
+                    // Create items list with images
+                    const itemsList = order.items.map(item => `
+                    <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                        <img src="${item.image}" style="width: 40px; height: 40px; object-fit: cover; margin-right: 10px;" alt="${item.name}">
+                        <div>
+                            ${item.name} (x${item.quantity}) - $${(item.price * item.quantity).toFixed(2)}
+                        </div>
+                    </div>
+                `).join('');
+
+                    orderElement.innerHTML = `
+                    <div class="order-id">Order #${order.id}</div>
+                    <div class="order-date">${formattedDate}</div>
+                    <div class="order-status ${statusClass}">${statusText}</div>
+                    <div>${itemsList}</div>
+                    <div style="font-weight: bold; margin-top: 5px;">Total: $${order.total.toFixed(2)}</div>
+                    ${order.status !== 'cancelled' ? `
+                        <button class="cancel-btn" data-order-index="${index}">Cancel Order</button>
+                        <div class="confirm-cancel-container" data-order-index="${index}">
+                            <span>Are you sure?</span>
+                            <button class="confirm-cancel-btn">Yes, Cancel</button>
+                            <button class="cancel-cancel-btn">No, Keep It</button>
+                        </div>
+                    ` : ''}
+                `;
+
+                    ordersList.appendChild(orderElement);
+                });
+
+
+
+                // Add event listeners to cancel buttons
+                document.querySelectorAll('.cancel-btn').forEach(button => {
+                    button.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        const orderIndex = this.getAttribute('data-order-index');
+                        document.querySelector(`.confirm-cancel-container[data-order-index="${orderIndex}"]`).style.display = 'block';
+                        this.style.display = 'none';
+                    });
+                });
+
+                // Add event listeners to confirm cancel buttons
+                document.querySelectorAll('.confirm-cancel-btn').forEach(button => {
+                    button.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        const orderIndex = this.closest('.confirm-cancel-container').getAttribute('data-order-index');
+                        cancelOrder(orderIndex);
+                    });
+                });
+
+                // Add event listeners to cancel-cancel buttons
+                document.querySelectorAll('.cancel-cancel-btn').forEach(button => {
+                    button.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        const orderIndex = this.closest('.confirm-cancel-container').getAttribute('data-order-index');
+                        document.querySelector(`.confirm-cancel-container[data-order-index="${orderIndex}"]`).style.display = 'none';
+                        document.querySelector(`.cancel-btn[data-order-index="${orderIndex}"]`).style.display = 'block';
+                    });
+                });
+            }
+            // Function to cancel an order
+            function cancelOrder(orderIndex) {
+                let orders = JSON.parse(localStorage.getItem('userOrders')) || [];
+                if (orderIndex >= 0 && orderIndex < orders.length) {
+                    orders[orderIndex].status = 'cancelled';
+                    localStorage.setItem('userOrders', JSON.stringify(orders));
+                    loadOrders(); // Refresh the orders list
+                }
+            }
+        });
+    </script>
+    <!-- ✅ ADD TO CART SCRIPT -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const productBoxes = document.querySelectorAll('.product-container .box');
+            const cartIconClass = 'bx-cart-alt';
+
+            productBoxes.forEach(box => {
+                const cartIcon = box.querySelector(`.${cartIconClass}`);
+                cartIcon.addEventListener('click', () => {
+                    const product = {
+                        title: box.querySelector('h2').textContent,
+                        price: parseFloat(box.querySelector('span').textContent.replace('$', '')),
+                        image: box.querySelector('img').src,
+                        quantity: 1
+                    };
+
+                    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+                    // Check if product already exists in cart
+                    const existingProduct = cart.find(item => item.title === product.title);
+                    if (existingProduct) {
+                        existingProduct.quantity += 1;
+                    } else {
+                        cart.push(product);
+                    }
+
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    alert(`${product.title} has been added to cart!`);
+                });
+            });
+        });
+    </script>
+    <script>
+        // Function to update the cart count
+        function updateCartCount() {
+            const cartCount = document.querySelectorAll('.cart .box').length;
+            const cartCountElement = document.querySelector('.cart-count');
+            if (cartCountElement) {
+                cartCountElement.textContent = cartCount;
+            }
+        }
+
+        // Event listener for adding products to the cart
+        const addToCartButtons = document.querySelectorAll('.bx-cart-alt');
+
+        addToCartButtons.forEach((button) => {
+            button.addEventListener('click', function () {
+                const productBox = button.closest('.box');
+                const productName = productBox.querySelector('h2').textContent;
+                const productPrice = productBox.querySelector('span').textContent;
+                const productImage = productBox.querySelector('img').src;
+
+                // Check if the product is already in the cart
+                const cartItems = document.querySelectorAll('.cart .box');
+                let productExists = false;
+                cartItems.forEach((cartItem) => {
+                    const cartProductName = cartItem.querySelector('.text h3').textContent;
+                    if (cartProductName === productName) {
+                        productExists = true;
+                    }
+                });
+
+                // If product is not already in the cart, add it
+                if (!productExists) {
+                    const cartContainer = document.querySelector('.cart');
+                    const cartItem = document.createElement('div');
+                    cartItem.classList.add('box');
+                    cartItem.innerHTML = `
+                        <img src="${productImage}" alt="${productName}">
+                        <div class="text">
+                            <h3>${productName}</h3>
+                            <span data-unit-price="${parseFloat(productPrice.replace('$', ''))}">${productPrice}</span>
+                            <div class="quantity">
+                                <button class="decrease">−</button>
+                                <span class="count">1</span>
+                                <button class="increase">+</button>
+                            </div>
+                        </div>
+                        <i class='bx bxs-trash'></i>
+                    `;
+                    cartContainer.insertBefore(cartItem, cartContainer.querySelector('.checkout-btn'));
+
+                    // Update cart count
+                    updateCartCount();
+
+                    // Add event listeners to the decrease/increase buttons and remove buttons
+                    document.querySelectorAll('.decrease').forEach(button => {
+                        button.addEventListener('click', function () {
+                            const box = this.closest('.box');
+                            const countElement = box.querySelector('.count');
+                            let count = parseInt(countElement.textContent);
+                            if (count > 1) {
+                                count - 1; // ✅ Correct
+                                countElement.textContent = count;
+                                updatePrice(box);
+                            }
+                        });
+                    });
+
+                    document.querySelectorAll('.increase').forEach(button => {
+                        button.addEventListener('click', function () {
+                            const box = this.closest('.box');
+                            const countElement = box.querySelector('.count');
+                            let count = parseInt(countElement.textContent);
+                            count + 1; // ✅ Correct
+                            countElement.textContent = count;
+                            updatePrice(box);
+                        });
+                    });
+
+                    function updatePrice(cartItem) {
+                        const priceSpan = cartItem.querySelector('.text span');
+                        const unitPrice = parseFloat(priceSpan.getAttribute('data-unit-price'));
+                        const quantity = parseInt(cartItem.querySelector('.count').textContent);
+                        priceSpan.textContent = `$${(unitPrice * quantity).toFixed(2)}`;
+                    }
+
+
+
+                }
+            });
+        });
+    </script>
+    <!-- Link To JS -->
+    <script src="main.js"></script>
+    <script src="server.js"></script>
+    <!-- 🔍 Enhanced Search with Clickable Suggestions -->
+    <style>
+        #searchSuggestions {
+            position: absolute;
+            background: white;
+            border: 1px solid #ddd;
+            width: 300px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            margin-top: 5px;
+        }
+
+        #searchSuggestions div {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        #searchSuggestions div:hover {
+            background: #f0f0f0;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('productSearch');
+            const productBoxes = document.querySelectorAll('.product-container .box');
+            const suggestionBox = document.createElement('div');
+            suggestionBox.id = 'searchSuggestions';
+            document.querySelector('.search-box').appendChild(suggestionBox);
+
+            searchInput.addEventListener('input', function () {
+                const searchTerm = this.value.toLowerCase().trim();
+                suggestionBox.innerHTML = '';
+                suggestionBox.style.display = 'none';
+
+                if (!searchTerm) return;
+
+                productBoxes.forEach(box => {
+                    const title = box.querySelector('h2');
+                    const productName = title.textContent.toLowerCase().trim();
+                    if (productName.includes(searchTerm)) {
+                        const match = document.createElement('div');
+                        match.textContent = title.textContent;
+                        match.addEventListener('click', () => {
+                            title.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            searchInput.value = '';
+                            suggestionBox.style.display = 'none';
+                        });
+                        suggestionBox.appendChild(match);
+                        suggestionBox.style.display = 'block';
+                    }
+                });
+            });
+
+            // Hide suggestions when clicking outside
+            document.addEventListener('click', function (e) {
+                if (!suggestionBox.contains(e.target) && e.target !== searchInput) {
+                    suggestionBox.style.display = 'none';
+                }
+            });
+        });
+    </script>
+    <script>
+        function updateCartMessage() {
+            const cart = document.querySelector('.cart');
+            const cartItems = cart.querySelectorAll('.box');
+            const emptyMsg = cart.querySelector('.empty-cart-msg');
+            if (emptyMsg) {
+                emptyMsg.style.display = cartItems.length === 0 ? 'block' : 'none';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartMessage();
+
+            document.querySelectorAll('.bx-cart-alt').forEach(button => {
+                button.addEventListener('click', updateCartMessage);
+            });
+
+            document.querySelector('.cart').addEventListener('click', (e) => {
+                if (e.target.classList.contains('bxs-trash')) {
+                    setTimeout(updateCartMessage, 100);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

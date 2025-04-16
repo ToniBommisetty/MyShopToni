@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TO||NI - Account Settings</title>
+  <link rel="icon" href="Images/adidas.png" />
+
+  <!-- Boxicons & Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #2c3e50, #3498db);
+      color: #fff;
+      padding: 40px 20px;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      padding: 40px 30px;
+      max-width: 1000px;
+      margin: auto;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    h4 {
+      font-size: 28px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 30px;
+      letter-spacing: 1px;
+    }
+
+    .list-group-item {
+      background: transparent;
+      color: #ffffffcc;
+      border: 1px solid transparent;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .list-group-item:hover,
+    .list-group-item.active {
+      background-color: #3498db;
+      color: #fff;
+      border-radius: 8px;
+      transform: translateX(5px);
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-body {
+      padding: 25px;
+    }
+
+    .form-control {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #080808; /* make font color white */
+      border: 1px solid #ffffff40;
+      border-radius: 10px;
+      padding: 12px;
+      font-weight: 500;
+    }
+
+    .form-control::placeholder {
+      color: #cccccc;
+      opacity: 0.8;
+    }
+
+    .form-control:focus {
+      background-color: rgba(255, 255, 255, 0.15);
+      border-color: #3498db;
+      box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+      color: #fff;
+    }
+
+    .btn-custom {
+      background: #3498db;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 12px;
+      border: none;
+      transition: 0.3s;
+      font-weight: 600;
+    }
+
+    .btn-custom:hover {
+      background: #2980b9;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline-light {
+      border: 1px solid #ccc;
+      color: #fff;
+      transition: 0.3s;
+    }
+
+    .btn-outline-light:hover {
+      background-color: #fff;
+      color: #3498db;
+    }
+
+    .small.text-muted.mt-2 {
+      color: black !important;
+    }
+
+
+    .ui-w-80 {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    }
+
+    .back-btn-user {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    
+
+    .back-btn-user .back {
+      padding: 10px 15px;
+      border-radius: 10px;
+      background-color: #ecf0f1;
+      color: #333;
+      font-weight: 600;
+      border: none;
+      transition: 0.3s;
+    }
+
+    .back-btn-user .back:hover {
+      background-color: #d0d3d4;
+    }
+
+    .switcher {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .switcher input {
+      margin-right: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .row-bordered {
+        flex-direction: column;
+      }
+
+      .col-md-3 {
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="back-btn-user">
+    <a href="frontpage.html"><button class="back">← Back</button></a>
+  </div>
+
+  <div class="container">
+    <h4>✨ Account Settings ✨</h4>
+
+    <div class="card">
+      <div class="row no-gutters row-bordered">
+        <div class="col-md-3">
+          <div class="list-group list-group-flush account-settings-links">
+            <a class="list-group-item active" data-toggle="list" href="#account-general">General</a>
+            <a class="list-group-item" data-toggle="list" href="#account-password">Password</a>
+            <a class="list-group-item" data-toggle="list" href="#account-info">Info</a>
+            <a class="list-group-item" data-toggle="list" href="#account-social">Social</a>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="tab-content">
+
+            <!-- General Tab -->
+            <div class="tab-pane fade active show" id="account-general">
+              <div class="card-body media align-items-center">
+                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="ui-w-80" id="profileImage" alt="Profile">
+                <div class="media-body ml-4">
+                  <label class="btn btn-outline-light">
+                    Upload Photo
+                    <input type="file" id="profilePicInput" hidden>
+                  </label>
+                  <button class="btn btn-outline-light ml-2" id="resetPicBtn">Reset</button>
+                  <div class="small text-muted mt-2" style="color: black;">JPG, GIF or PNG. Max size of 800K</div>
+                </div>
+              </div>
+              <hr />
+              <div class="card-body">
+                <div class="form-group">
+                  <label>Username <i class="bx bx-edit-alt edit-icon" onclick="enableEdit('username')"></i></label>
+                  <input type="text" class="form-control" id="username" disabled />
+                </div>
+                <div class="form-group">
+                  <label>Fullname <i class="bx bx-edit-alt edit-icon" onclick="enableEdit('fullname')"></i></label>
+                  <input type="text" class="form-control" id="fullname" disabled />
+                </div>
+                <div class="form-group">
+                  <label>Email <i class="bx bx-edit-alt edit-icon" onclick="enableEdit('email')"></i></label>
+                  <input type="text" class="form-control" id="email" disabled />
+                </div>
+              </div>
+            </div>
+
+            <!-- Password Tab -->
+            <div class="tab-pane fade" id="account-password">
+              <div class="card-body">
+                <div class="form-group">
+                  <label>Current Password</label>
+                  <input type="password" class="form-control" id="currentPassword" placeholder="••••••" />
+                </div>
+                <div class="form-group">
+                  <label>New Password</label>
+                  <input type="password" class="form-control" id="newPassword" placeholder="••••••••" />
+                </div>
+                <div class="form-group">
+                  <label>Repeat New Password</label>
+                  <input type="password" class="form-control" id="confirmPassword" placeholder="••••••••" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Info Tab -->
+            <div class="tab-pane fade" id="account-info">
+              <div class="card-body">
+                <div class="form-group">
+                  <label>Bio</label>
+                  <textarea class="form-control" id="bio" rows="3" placeholder="A short bio about you...">Full-stack developer, passionate about UI/UX design and coding 💻</textarea>
+                </div>
+                <div class="form-group">
+                  <label>Birthday</label>
+                  <input type="date" class="form-control" id="birthday" />
+                </div>
+                <div class="form-group">
+                  <label>Country</label>
+                  <select class="form-control" id="country">
+                    <option>India</option>
+                    <option>USA</option>
+                    <option>UK</option>
+                    <option>Canada</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Social Tab -->
+            <div class="tab-pane fade" id="account-social">
+              <div class="card-body">
+                <div class="form-group">
+                  <label>Twitter</label>
+                  <input type="text" class="form-control" id="twitter" value="https://twitter.com/user" />
+                </div>
+                <div class="form-group">
+                  <label>LinkedIn</label>
+                  <input type="text" class="form-control" id="linkedIn" value="https://linkedin.com/in/user" />
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="text-right p-4">
+        <button class="btn btn-custom mt-3" onclick="saveProfile()">Save Changes</button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      const defaultSrc = $("#profileImage").attr("src");
+
+      $("#profilePicInput").on("change", function () {
+        const file = this.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = e => $("#profileImage").attr("src", e.target.result);
+        reader.readAsDataURL(file);
+      });
+
+      $("#resetPicBtn").on("click", function () {
+        $("#profileImage").attr("src", defaultSrc);
+        $("#profilePicInput").val("");
+      });
+
+      $("#saveBtn").on("click", function () {
+        alert("Changes saved successfully!");
+        // You can add your AJAX call here
+      });
+    });
+  </script>
+
+  <script src="main.js"></script>
+</body>
+</html>
